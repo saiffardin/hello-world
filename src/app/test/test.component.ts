@@ -12,6 +12,12 @@ import { Component, OnInit } from '@angular/core';
     <!-- Event Binding -->
     <button (click)="onClick($event)">Greet</button>
     <h3>{{ greetings }}</h3>
+
+    <!-- Template Reference Variables -->
+    <div class="temp-ref-vars">
+        <input #myInput type="text">
+        <button (click)="LogInfo(myInput.value)" >Log</button>
+    </div>
   `,
   styles: [
     `
@@ -19,6 +25,10 @@ import { Component, OnInit } from '@angular/core';
         text-align: center;
         color: red;
         font-size: 2rem;
+      }
+
+      .temp-ref-vars{
+          padding: 5px;
       }
 
       .text-danger {
@@ -60,9 +70,13 @@ export class TestComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onClick(event:any) {
+  onClick(event: any) {
     console.log('Event Binding');
     this.greetings = 'Welcome to AES';
-    console.log(event)
+    console.log(event);
+  }
+
+  LogInfo(str:any){
+    console.log(str)
   }
 }
