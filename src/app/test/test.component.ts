@@ -5,9 +5,13 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <h1>Welcome {{ name }}</h1>
     <h2 [ngClass]="multiClassObj">AES Angular</h2>
-    <h2 [style.color]="hasError ? 'red':'green'">Style Binding 1</h2>
+    <h2 [style.color]="hasError ? 'red' : 'green'">Style Binding 1</h2>
     <h2 [style.color]="highlightColor">Style Binding 2</h2>
     <h2 [ngStyle]="titleStyles">Style Binding 3</h2>
+
+    <!-- Event Binding -->
+    <button (click)="onClick($event)">Greet</button>
+    <h3>{{ greetings }}</h3>
   `,
   styles: [
     `
@@ -39,6 +43,8 @@ export class TestComponent implements OnInit {
   public isSpecial = false;
   public highlightColor = 'orange';
 
+  public greetings = '';
+
   public multiClassObj = {
     'text-danger': this.hasError,
     'text-success': !this.hasError,
@@ -46,11 +52,17 @@ export class TestComponent implements OnInit {
   };
 
   public titleStyles = {
-      color : "blue",
-      fontStyle: "italic"
-  }
+    color: 'blue',
+    fontStyle: 'italic',
+  };
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onClick(event:any) {
+    console.log('Event Binding');
+    this.greetings = 'Welcome to AES';
+    console.log(event)
+  }
 }
