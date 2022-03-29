@@ -3,7 +3,12 @@ import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-emp-detail',
-  templateUrl: './emp-detail.component.html',
+  template: `
+    <h1>Employee Detail</h1>
+    <ul *ngFor="let emp of employees">
+      <li></li>
+    </ul>
+  `,
   styleUrls: ['./emp-detail.component.css'],
 })
 export class EmpDetailComponent implements OnInit {
@@ -12,6 +17,6 @@ export class EmpDetailComponent implements OnInit {
   constructor(private _employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.employees = this._employeeService.getEmployee();
+    this._employeeService.getEmployee().subscribe((data) => console.log(data));
   }
 }

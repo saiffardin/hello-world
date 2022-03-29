@@ -7,7 +7,7 @@ import { EmployeeService } from '../employee.service';
     <div>
       <h1>Employee List</h1>
       <ul *ngFor="let emp of employees">
-        <li>{{ emp.id }} . {{ emp.name }} - {{ emp.age }} years old</li>
+        <li>{{ emp.id }} . {{ emp.name }}</li>
       </ul>
     </div>
   `,
@@ -19,6 +19,7 @@ export class EmpListComponent implements OnInit {
   constructor(private _employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.employees = this._employeeService.getEmployee();
+    this._employeeService.getEmployee()
+    .subscribe((data)=>this.employees=data)
   }
 }
